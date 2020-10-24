@@ -1,23 +1,25 @@
 package edu.upb.ds.avl;
 
-public class TreeNode {
-    TreeNode left, right;
-    int data;
+public class Node {
+    public Node left;
+    public Node right;
+    Object data;
     int height;
 
-    public TreeNode()
+    public Node()
     {
         left = null;
         right = null;
-        data = 0;
+        data = null;
         height = 0;
     }
 
-    public TreeNode(int numero)
+    public Node(int numero)
     {
         left = null;
         right = null;
         data = numero;
-        height = 0;
+        height = 1;
     }
+
 }
