@@ -98,7 +98,7 @@ public class AVLTree {
         //Obtener balance para saber si lo estaá
         int balance = getBalance(nodo);
 
-        //4 casos de cuando el árbol no esta balanceado
+        //Casos de cuando el árbol no esta balanceado
         if (balance > 1 && dato < (int) nodo.left.data) {
             return rotarDerecha(nodo);
         }
