@@ -1,6 +1,7 @@
 package edu.upb.ds.avl;
 
 public class Node {
+
     public Node left;
     public Node right;
     Object data;
@@ -23,3 +24,4 @@ public class Node {
     }
 
 }
+//Developed by Pedro Gómez - ID:000396221
