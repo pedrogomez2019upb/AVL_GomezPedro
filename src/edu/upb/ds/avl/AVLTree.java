@@ -53,6 +53,15 @@ public class AVLTree {
             return b;
         }
     }
+    public Node valorMenor(Node nodo)
+    {
+        Node nodoTemporal = nodo;
+
+        while (nodoTemporal.left != null)
+            nodoTemporal = nodoTemporal.left;
+
+        return nodoTemporal;
+    }
 
     public Node rotarDerecha(Node nodo) {
         Node nodoIzquierdo = nodo.left;
@@ -120,6 +129,96 @@ public class AVLTree {
             return rotarIzquierda(nodo);
         }
         return nodo;
+    }
+
+    public Node eliminarElemento(Node nodo, int dato)
+    {
+        if (nodo == null) {
+            return nodo;
+        }
+
+        if (dato < (int) nodo.data) {
+            nodo.left = eliminarElemento(nodo.left, dato);
+        }
+
+        else if (dato > (int) nodo.data){
+            nodo.right = eliminarElemento(root.right, dato);
+        }
+        else
+        {
+            if ((nodo.left == null) || (nodo.right == null))
+            {
+                Node temp = null;
+                if (temp == nodo.left) {
+                    temp = nodo.right;
+                }
+                else {
+                    temp = nodo.left;
+                }
+                if (temp == null)
+                {
+                    temp = nodo;
+                    nodo = null;
+                }
+                else {
+                    nodo = temp;
+                }
+            }
+            else
+            {
+                // Sucesor menor
+                Node nodoTemporal = valorMenor(nodo.right);
+                nodo.data = nodoTemporal.data;
+                nodo.right = eliminarElemento(nodo.right, (int) nodoTemporal.data);
+            }
+        }
+
+        if (nodo == null) {
+            return nodo;
+        }
+        // Nueva altura
+        nodo.height = numeroMayor(alturaArbol(nodo.left), alturaArbol(nodo.right)) + 1;
+
+        // Chequear el balance del nodo
+        int balance = getBalance(nodo);
+
+        // IZQUIERDA IZQUIERDA
+        if (balance > 1 && getBalance(nodo.left) >= 0) {
+            return rotarDerecha(nodo);
+        }
+
+        // IZQUIERDA DERECHA
+        if (balance > 1 && getBalance(nodo.left) < 0)
+        {
+            nodo.left = rotarIzquierda(nodo.left);
+            return rotarDerecha(nodo);
+        }
+
+        // DERECHA DERECHA
+        if (balance < -1 && getBalance(nodo.right) <= 0) {
+            return rotarIzquierda(nodo);
+        }
+        // DERECHA IZQUIERDA
+        if (balance < -1 && getBalance(nodo.right) > 0)
+        {
+            nodo.right = rotarDerecha(nodo.right);
+            return rotarIzquierda(nodo);
+        }
+
+        return nodo;
+    }
+
+    public boolean encontrarElemento(int valor , Node raiz){
+        if (raiz == null) {
+            return false;
+        }
+        if (valor == (int) raiz.data) {
+            return true;
+        }
+        else if((int)raiz.data > valor)
+            return encontrarElemento(valor, raiz.left);
+        else
+            return encontrarElemento(valor, raiz.right);
     }
 }
 //Developed by Pedro Gómez - ID:000396221

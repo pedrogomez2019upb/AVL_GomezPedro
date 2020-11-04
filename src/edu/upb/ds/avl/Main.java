@@ -13,6 +13,7 @@ public class Main {
         arbol.root = arbol.insertar(arbol.root, 48);
         arbol.root = arbol.insertar(arbol.root, 65);
         arbol.root = arbol.insertar(arbol.root, 33);
+
         arbol.root = arbol.insertar(arbol.root, 76);
         arbol.root = arbol.insertar(arbol.root, 55);
         arbol.root = arbol.insertar(arbol.root, 60);
@@ -28,6 +29,12 @@ public class Main {
         arbol.root = arbol.insertar(arbol.root, 1);
         arbol.root = arbol.insertar(arbol.root, 50);
 
+
+        System.out.println("\n############################");
+        System.out.println("\nAVL en Orden Transversal : ");
+        System.out.println("\n############################");
+        arbol.preOrden(arbol.root);
+        arbol.root=arbol.eliminarElemento(arbol.root, 50);
         System.out.println("\n############################");
         System.out.println("\nAVL en Orden Transversal : ");
         System.out.println("\n############################");
